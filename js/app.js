@@ -23,7 +23,7 @@
  *
  */
 
-const sectionContainer = document.querySelector(".landing__container");
+const landingContainer = document.querySelector(".landing__container");
 
 /**
  * End Global Variables
