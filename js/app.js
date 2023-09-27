@@ -23,7 +23,7 @@
  *
  */
 
-const landingContainer = document.querySelector(".landing__container");
+
 
 /**
  * End Global Variables
@@ -39,16 +39,30 @@ const landingContainer = document.querySelector(".landing__container");
 
 // build the nav
 const navList = document.querySelector("#navbar__list"); //select ul element
+const landingContainer = document.querySelector(".landing__container");
 
 //select section headers and create li elements with inner text of header elements
 const sectionHeader = document.querySelectorAll("h2");
 for (let header of sectionHeader) {
-  const navMenu = document.createElement("li"); //create li element
-  navMenu.innerText = header.innerText; //add section text to li elements
-  navList.appendChild(navMenu); //add li elements to ul as children
-  navMenu.classList.add("menu__link");
+  const navItem = document.createElement("li"); //create li element
+  const link = document.createElement("a"); //create clickable link
+
+  link.innerHTML = header.innerHTML; //add section HTML to li elements
+  link.href = "#" + header.id; //add target for click event
+  navList.append(navItem); //add li elements to ul as children
+  navItem.append(link); //add links to the li elements
+
+  // navItem.appendChild(navLink); //add link element to li
+  navItem.classList.add("menu__link"); //add class to li element
 }
 
+
+
+
+document.addEventListener("click", function(event) {
+  let button = document.querySelectorAll("a");
+  alert("it works");
+ });
 
 // Add class 'active' to section when near top of viewport
 
