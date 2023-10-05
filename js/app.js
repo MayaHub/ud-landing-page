@@ -22,7 +22,10 @@
  * Define Global Variables
  *
  */
-
+const navList = document.querySelector("#navbar__list"); //select ul element
+// const landingContainer = document.querySelector(".landing__container");
+const sectionHeader = document.querySelectorAll("h2"); //select all h2 elements
+const sections = document.querySelectorAll("section"); //select all section elements
 
 
 /**
@@ -31,6 +34,12 @@
  *
  */
 
+//add class name to section headers
+sectionHeader.forEach(header => {
+  header.classList.add("sec__hdr");
+ });
+
+
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -38,33 +47,42 @@
  */
 
 // build the nav
-const navList = document.querySelector("#navbar__list"); //select ul element
-const landingContainer = document.querySelector(".landing__container");
 
-//select section headers and create li elements with inner text of header elements
-const sectionHeader = document.querySelectorAll("h2");
-for (let header of sectionHeader) {
+ //select section headers and create li elements with inner text of header elements
+sections.forEach(section => {
   const navItem = document.createElement("li"); //create li element
-  const link = document.createElement("a"); //create clickable link
+  const navLink = document.createElement("a"); //create link element
+  navLink.innerText = section.dataset.nav; //use data-nav to find sections and add text
+  navLink.href = `#${section.id}`; //make clickable link to section by data-nav
+  navItem.appendChild(navLink); //add li elements to ul 
+  navList.appendChild(navItem); //add link elements to li's
 
-  link.innerHTML = header.innerHTML; //add section HTML to li elements
-  link.href = "#" + header.id; //add target for click event
-  navList.append(navItem); //add li elements to ul as children
-  navItem.append(link); //add links to the li elements
-
-  // navItem.appendChild(navLink); //add link element to li
-  navItem.classList.add("menu__link"); //add class to li element
-}
+  navLink.classList.add("menu__link"); //add class name to li element
+});
 
 
-
-
-document.addEventListener("click", function(event) {
-  let button = document.querySelectorAll("a");
-  alert("it works");
- });
 
 // Add class 'active' to section when near top of viewport
+
+// function sectionInView(section) {
+//   const inView = document.documentElement.clientHeight;
+    // section.getBoundingClientRect();
+//   return (
+//     inView.top >= 0 && inView.left >= 0 &&
+//     inView.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+//     inView.right <= (window.innerWidth || document.documentElement.clientWidth)
+//   );
+// }
+
+// function setActiveSection() {
+//   sections.forEach(section => {
+//     if (sectionInView(section)) {
+//       section.classList.add("your-active-class");
+//     } else {
+//       section.classList.remove("your-active-class")
+//     }
+//   });
+// }
 
 // Scroll to anchor ID using scrollTO event
 
@@ -78,4 +96,39 @@ document.addEventListener("click", function(event) {
 
 // Scroll to section on link click
 
+
 // Set sections as active
+
+
+/** viewport research/practice */
+
+const viewportHeight = document.documentElement.clientHeight;
+const viewportWidth = document.documentElement.clientWidth;
+
+const sectionOne = document.getElementById("section1");
+const topEdge = sectionOne.getBoundingClientRect().top;
+const bottomEdge = sectionOne.getBoundingClientRect().bottom;
+
+
+//determine if element is in viewport
+function isInView() {
+    if (sectionOne.topEdge < viewportHeight && sectionOne.bottomEdge > 0) {
+      sectionOne.style.backgroundColor = "green";
+    }
+  }
+
+// document.addEventListener("scroll", function() {
+//   sections.forEach(section => {
+//     if(isInView(section)) {
+//       section.style.backgroundColor = "green";
+//     }
+//   });
+// }
+
+
+  // when scrolling, how much of the element must be visible for the effect to take place?
+  // What is a good percentage to use if more than one element is in the viewport? Highest one is highlighted?
+  // while the top of the section or the bottom of the section comes into the viewport
+    // ****use boolean function isInView(element) for while statement****
+  // change state to active 
+  // change background to highlight
