@@ -60,6 +60,26 @@ sections.forEach(section => {
   navLink.classList.add("menu__link"); //add class name to li element
 });
 
+//Smooth scroll
+const links = document.querySelectorAll(".menu__link"); //get all of the a elements
+
+//add the click event
+links.forEach(link => {
+  link.addEventListener("click", smooth);
+})
+
+//function for the click event
+function smooth(event) {
+  event.preventDefault(); //stop the click from doing its standard behavior
+  const href = this.getAttribute("href"); //find the href element tags 
+  
+  document.querySelector(href).scrollIntoView({ //set scroll behavior to smooth
+    behavior: "smooth"
+  });
+}
+
+
+
 
 
 // Add class 'active' to section when near top of viewport
