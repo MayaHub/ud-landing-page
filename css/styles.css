@@ -24,11 +24,12 @@ h1 {
     font-family: 'Fira Sans', sans-serif;
     font-size: 3em;
     margin: 2em 1rem;
+    padding-top: 50px;
 }
 
 @media only screen and (min-width: 35em){
     h1 {
-        font-size: 7em;
+        font-size: 6em;
         margin: 2em 4rem 1em;
     }
 }
@@ -72,6 +73,7 @@ section {
 
 .navbar__menu li {
     display: inline-block;
+
 }
 
 .navbar__menu .menu__link {
@@ -97,6 +99,32 @@ section {
     z-index: 5;
     padding-top: 20px;
 }
+
+
+
+@media only screen and (max-width: 415px) {
+
+    .navbar__menu {
+        /* background-color: green; */
+        display: inline-block;
+        white-space: nowrap;
+        font-size: 90%;
+    }
+}
+
+@media only screen and (max-width: 374px) {
+    .navbar__menu {
+        background-color: green;
+        width: 100%;
+        /* font-size: 85%; */
+     }
+
+     #navbar__list a {
+        /* background-color: green; */
+        padding-right: 0;
+     }
+}
+
 
 /* Footer Styles */
 .page__footer {

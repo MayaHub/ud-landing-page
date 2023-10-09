@@ -25,9 +25,9 @@ sections.forEach((section) => {
   navLink.innerText = section.dataset.nav; //use data-nav to find sections and add text
   navLink.href = `#${section.id}`; //make clickable link to section by data-nav
   navItem.appendChild(navLink); //add li elements to ul
-  navList.appendChild(navItem); //add link elements to li's
+  navList.appendChild(navItem); //add a elements to li's
 
-  navLink.classList.add("menu__link"); //add class name to li element
+  navLink.classList.add("menu__link"); //add class name to <a> element
 });
 
 // Scroll to anchor ID using scrollTO event
@@ -49,34 +49,24 @@ function smooth(event) {
   });
 }
 
-// Add class 'active' to section when near top of viewport
 
-// Set sections as active
-
-/** viewport research/practice */
-
-const viewportHeight = document.documentElement.clientHeight;
-const headers = document.querySelectorAll("h2");
 
 //determine if element is in viewport
-function isInView(section) {
-  const bound = section.getBoundingClientRect();
-  return bound.top < viewportHeight && bound.bottom > 0;
+function isTopVisible(section) {
+  const sectionHeight = section.offsetHeight;
+  const topEdge = section.getBoundingClientRect().top;
+  return topEdge >=0 && topEdge <= (sectionHeight/2);
 }
 
-window.addEventListener("scroll", function (e) {
-  sections.forEach((section) => {
+function activeSection() {
+  sections.forEach(section => {
     section.classList.remove("your-active-class");
-    if(isInView(section)) {
-      section.classList.add("your-active-class");
+
+    if(isTopVisible(section)) {
+      section.classList.toggle("your-active-class"); // Set section as active
     }
   });
-});
+}
 
-
-// when scrolling, how much of the element must be visible for the effect to take place?
-// What is a good percentage to use if more than one element is in the viewport? Highest one is highlighted?
-// while the top of the section or the bottom of the section comes into the viewport
-// ****use boolean function isInView(element) for while statement****
-// change state to active
-// change background to highlight
+// Add class 'active' to section when near top of viewport
+document.addEventListener("scroll", activeSection);
