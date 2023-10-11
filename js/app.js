@@ -58,13 +58,19 @@ function isTopVisible(section) {
   return topEdge >=0 && topEdge <= (sectionHeight/2);
 }
 
+
 function activeSection() {
   sections.forEach(section => {
     section.classList.remove("your-active-class");
-
+    const navItem = document.getElementById(`#${section.id}`);
+    navItem.classList.remove("active");
+    
+    // console.log(section.Id);
+    
     if(isTopVisible(section)) {
       section.classList.toggle("your-active-class"); // Set section as active
-      navItem.classList.add("active");
+      navItem.classList.toggle("active");
+      // console.log(navItem);
 
 
       // if(section.id === href.getAttribute(navItem.id)) {

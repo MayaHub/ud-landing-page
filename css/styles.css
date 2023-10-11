@@ -89,7 +89,7 @@ section {
     transition: ease 0.3s all;
 }
 
-.navItem.active {
+li.active {
     background-color: greenyellow;
 }
 
