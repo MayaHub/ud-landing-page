@@ -73,7 +73,6 @@ section {
 
 .navbar__menu li {
     display: inline-block;
-
 }
 
 .navbar__menu .menu__link {
@@ -88,6 +87,10 @@ section {
     background: #333;
     color: #fff;
     transition: ease 0.3s all;
+}
+
+.navItem.active {
+    background-color: greenyellow;
 }
 
 /* Header Styles */

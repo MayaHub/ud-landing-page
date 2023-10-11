@@ -24,10 +24,12 @@ sections.forEach((section) => {
   const navLink = document.createElement("a"); //create link element
   navLink.innerText = section.dataset.nav; //use data-nav to find sections and add text
   navLink.href = `#${section.id}`; //make clickable link to section by data-nav
-  navItem.appendChild(navLink); //add li elements to ul
-  navList.appendChild(navItem); //add a elements to li's
+  navItem.setAttribute("id", `#${section.id}`) //add id to li element
+  navItem.appendChild(navLink); //add a elements to li's
+  navList.appendChild(navItem); //add li elements to ul
 
   navLink.classList.add("menu__link"); //add class name to <a> element
+  navItem.classList.add("navlist__item"); //add class name to list items
 });
 
 // Scroll to anchor ID using scrollTO event
@@ -49,8 +51,6 @@ function smooth(event) {
   });
 }
 
-
-
 //determine if element is in viewport
 function isTopVisible(section) {
   const sectionHeight = section.offsetHeight;
@@ -64,9 +64,33 @@ function activeSection() {
 
     if(isTopVisible(section)) {
       section.classList.toggle("your-active-class"); // Set section as active
+      navItem.classList.add("active");
+
+
+      // if(section.id === href.getAttribute(navItem.id)) {
+      //   navItem.classList.add("active");
+      // }
+
     }
   });
 }
 
 // Add class 'active' to section when near top of viewport
-document.addEventListener("scroll", activeSection);
+window.addEventListener("scroll", activeSection);
+
+
+// Add active class to nav list item
+// const navlistItems = document.querySelectorAll(".navlist__item");
+
+// function makeActive() {
+  // navlistItems.forEach(listItem => {
+  //   listItem.addEventListener("click", function() {
+  //     listItem.classList.toggle("active"); //this works - now how to make it work w/scroll
+  //   })
+  // });
+// }
+
+  
+    
+
+
