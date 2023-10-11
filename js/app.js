@@ -65,38 +65,15 @@ function activeSection() {
     const navItem = document.getElementById(`#${section.id}`);
     navItem.classList.remove("active");
     
-    // console.log(section.Id);
-    
     if(isTopVisible(section)) {
       section.classList.toggle("your-active-class"); // Set section as active
       navItem.classList.toggle("active");
-      // console.log(navItem);
-
-
-      // if(section.id === href.getAttribute(navItem.id)) {
-      //   navItem.classList.add("active");
-      // }
-
     }
   });
 }
 
 // Add class 'active' to section when near top of viewport
 window.addEventListener("scroll", activeSection);
-
-
-// Add active class to nav list item
-// const navlistItems = document.querySelectorAll(".navlist__item");
-
-// function makeActive() {
-  // navlistItems.forEach(listItem => {
-  //   listItem.addEventListener("click", function() {
-  //     listItem.classList.toggle("active"); //this works - now how to make it work w/scroll
-  //   })
-  // });
-// }
-
-  
-    
+ 
 
 
